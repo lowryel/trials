@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing</title>
+</head>
+<body>
+    <main>
+        <div class="">
+            <section class="md:flex mx-5 md:mx-0 col-12 justify-center items-center">
+                <div class="col-6">
+                    <h1 class="text-3xl">Billing Information</h1>
+                    <h3>Hi Checkout</h3>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-primary">Submit</button>
+                    </form>
+                    <p>Use Existing Address</p>
+                    {% if address.exists %}
+                    <form action="{% url 'checkout_address_reuse' %}" method="post">
+                        {% csrf_token %}
+                        {% for addr in address %}
+                        <label for="address">Shipping Address
+                        <input type="radio" name="address_id" id="{{addr.id}}" value="{{ addr.id }}">
+                        {{addr.line2}}
+                        </label><br>
+                        {% endfor %}
+                        <button class="btn btn-primary btn-rounded" type="submit" name="Submit">Use Address</button>
+                    </form>
+                    {% endif %}
+                    <!-- <a href="{% url 'checkout' %}">New Checkout addr</a> -->
+                </div>
+                <div class="md:col-6 bg-slate-500 p-2 text-sm border-l-2 border-red-500">
+                    <h1 class="text-3xl">Order and Pricing Details</h1>
+                    <span class="text-sm">
+                        <p>{{booking.slug}}</p>
+                        <div class="p-4 mx-1 text-sm">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Room Number</th>
+                                        <th scope="col">Fee</th>
+                                        <th scope="col">Description</th>
+                                    </tr>
+                                </thead>
+                                {% for roomz in rooms %}
+                                <tbody>
+                                    <tr>
+                                        <td><img src="{{roomz.imageUrl}}" alt=""></td>
+                                        <td>{{roomz.room_number}}</td>
+                                        <td>{{roomz.fee}}</td>
+                                        <td>{{roomz.description}}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <p>{{booking.booking_date}}</p>
+                        <td><b>Your bill after 14.99 discount is: {{booking.total}}</b></td>
+                        
+                        <p></p>
+                    </span>
+                </div>
+            </section>            
+        </div>
+    </main>
+</body>
+{% endblock %}

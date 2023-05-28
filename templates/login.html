@@ -1,0 +1,32 @@
+  {% extends 'index.html' %}
+  <body class="item-center block justify-center">
+    {% block content %}
+    <div class="container-xl mx-20 p-4">
+      {% for message in messages %}
+      <h4 class="text-red-800 font-bold">{{message}}</h4>
+      {% endfor %}
+      <form action="" method="POST" class="">
+        {% csrf_token %} 
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-700">Username</span>
+          <input type="text" class="peer ..." name="username"/>
+          <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+            Please provide a username.
+          </p>
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-700">Password</span>
+          <input type="password" class="peer ..." name="password"/>
+          <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
+            Please provide a valid password.
+          </p>
+        </label>
+        <button class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" type="submit" name="Post">POST</button>
+      </form>
+      <a href="{% url 'signup'%}"
+        class="font-medium px-3 py-2 text-decoration-underline text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Signup here if you don't have an account</a>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

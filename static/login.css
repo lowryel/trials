@@ -1,0 +1,16 @@
+body {
+  padding-left: 30%;
+  /* background-image: url(./abenam.jpg); */
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding-top: 50px;
+  color: crimson;
+  font-size: x-large;
+  background-image: url(./ucl.jpg);
+}
+.Form {
+  border-radius: 100px;
+  height: 40px;
+  border: brown;
+  background: local;
+  background-color: aquamarine;
+}

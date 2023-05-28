@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+<body>
+    {% block content %}
+    <div class="">
+        {% if upvote_an_item %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <img class="h-48 w-full object-contain md:h-full md:w-48" src="{{upvote_an_item.imageUrl}}"
+                        alt="Modern building architecture">
+                    </div>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-sm text-indigo-500 
+                                        font-semibold hover:underline">{{upvote_an_item.name}}</div>
+                        <p class="mt-2 text-slate-500">{{upvote_an_item.description}}</p>
+                        <p class="mt-2 text-slate-500">{{upvote_an_item.date_created}}</p>
+                        <button class="bg-red-200 p-2 rounded-xl" type="submit">{{upvote_an_item.upvote}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+        
+    </div>
+
+    {% endblock %}
+</body>
+

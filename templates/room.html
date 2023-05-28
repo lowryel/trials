@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+    .rooms{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        text-align: center;
+        align-items: center;
+        background-color: rgba(166, 175, 153, 0.815);
+        padding: 2rem;
+        font-family: Helvetica;
+    }
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    @media screen and (max-width: 800px) {
+        .rooms{
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+<body>
+    <h3 style="text-align: right;">{{user}}</h3>
+    <a style="padding: 5px 25px; background-color: aquamarine;" href="{% url 'booking' %}">{{cart_total_items}}</a>
+    <h1>Hello, Book a room</h1>
+    <div class="rooms">
+        {% for roo in rooms %}
+        <form class="room-combo" style="padding: 30px; background-color: rgb(238, 250, 247);" action="{% url 'update-cart' roo.id %}" method="post">
+            {% csrf_token %}
+            <div class="md:flex">
+                <div class="md:shrink-0">
+                    <img class="h-48 w-full md:h-full md:w-48 object-contain" src="{{roo.imageUrl}}"
+                        alt="Modern building architecture">
+                </div>
+                <div class="p-8">
+                    <!-- <div class="uppercase tracking-wide text-sm text-indigo-500 
+                                            font-semibold hover:underline">{{post.name}}</div> -->
+                    <p class="mt-2 text-slate-500">{{roo.description | linebreaks}}</p>
+                    <p class="mt-2 text-slate-500"> {{roo.room_number}}</p>
+                    <!-- <p class="mt-2 text-slate-500" type="submit">{{post.upvote}}</p> -->
+                    <p class="mt-2 text-slate-500">{{roo.fee}}</p>
+                    <button style="padding: 5px 10px; background-color: green; border-radius: 5px; cursor: pointer;" type="submit">Add to Basket</button>                  
+                </div>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>
+

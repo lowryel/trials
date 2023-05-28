@@ -1,0 +1,23 @@
+{
+    "editor.wordWrap": "bounded",
+    "workbench.preferredDarkColorTheme": "Dracula Soft",
+    "workbench.preferredLightColorTheme": "GitHub Dark High Contrast",
+    "editor.quickSuggestionsDelay": 5,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "window.commandCenter": true,
+    "window.zoomLevel": 0,
+    "explorer.openEditors.visible": 9,
+    "interactiveSession.editor.wordWrap": "on",
+    "editor.formatOnPaste": true,
+    "search.defaultViewMode": "tree",
+    "diffEditor.wordWrap": "on",
+    "workbench.editor.wrapTabs": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none",
+    "workbench.statusBar.visible": false,
+    "workbench.tips.enabled": true,
+    "breadcrumbs.enabled": true,
+    "zenMode.centerLayout": true
+}

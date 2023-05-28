@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+
+<body style="font-family: Arial, Helvetica, sans-serif;">
+    <main class="container-lg">
+        <h1>Your Order here</h1> 
+            <a style="border: none; background-color: rgb(7, 168, 115);padding: 5px 10px; text-decoration: none;color: black;" href="{% url 'room' %}" >&lArr; Home</a>
+        <div>
+            <div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="px-4 mx-10">
+            <table class="m-5 table">
+                <thead>
+                    <tr>
+                    <!-- <th scope="col">#</th> -->
+                    <th scope="col">Room Number</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in rooms %}
+                    <tr>
+                    <!-- <th scope="row">1</th> -->
+                    <td>{{item.room_number}}</td>
+                    <td>{{item.fee}}</td>
+                    <form action="{% url 'delete-cart' item.id %}" method="post">
+                        {% csrf_token %}
+                        <td><button class="btn btn-danger delete-bin" type="submit">🗑</button>
+                            <p id="delete-from-cart"></p></td>
+                    </form>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+              
+                    <td><b>BOOKING TOTAL</b></td>
+                    <td><b>{{booking.total}}</b></td>
+                    <td><a href="{% url 'checkout' %}" class="btn btn-success text-black hover:text-white" type="submit">Checkout</a></td>
+                    </tr>
+                </tbody>
+            </table>        
+        </div>        
+    </main>
+    <script>
+        const deleteText = document.getElementById('delete-from-cart');
+        const deleteBin = document.getElementsByClassName('delete-bin');
+
+        console.log(deleteText.innerText, deleteBin['baseURI']);
+        // deleteBin.addEventListener('mouseover', (e)=>{
+        //     alert("Hello you want to delete");
+        //     // deleteText.style.visibility = 'visible';
+        // } )
+    </script>
+ {% endblock %}
+
+    
+</body>
+</html>

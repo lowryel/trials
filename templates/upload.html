@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+<body>
+    {% block content %}
+
+    <div>
+    <h1 class="text-2xl">Create a Post</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span class="p-2 ">
+                {{ form.as_p }}
+            </span>
+            <button class="py-2 md:py-2 md:px-4 px-4 bg-blue-500 font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" type="submit">POST</button>
+        </form>
+    </div>
+
+    {% endblock %}
+</body>
+</html>
+

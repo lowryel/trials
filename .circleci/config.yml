@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  # /circleci/python
+  python: circleci/python@1.5.0
+
+
+jobs:
+  build-and-test: 
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - run:
+          name: run requirements
+          command: |
+            pip install pytest
+      # - python/install-packages:
+      #     pkg-manager: pip
+      - run:
+          name: Run tests [pytest]
+          # This assumes pytest is installed via
+          command: pytest
+      - store_test_results:
+          path: test-results
+
+workflows:
+  sample: # This is the name of the wor
+    jobs:
+      - build-and-test
